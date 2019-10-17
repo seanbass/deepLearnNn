@@ -1,28 +1,29 @@
 import tensorflow as tf
+#import numpy as np
+import matplotlib.pyplot as plt
 
-mnist = tf.keras.datasets.mnist
+MNIST = tf.keras.datasets.mnist
 
-(X_TRAIN, Y_TRAIN), (X_TEST, Y_TEST) = mnist.load_data()
+(X_TRAIN, Y_TRAIN), (X_TEST, Y_TEST) = MNIST.load_data()
 
 X_TRAIN = tf.keras.utils.normalize(X_TRAIN, axis=-1)
 X_TEST = tf.keras.utils.normalize(X_TEST, axis=-1)
 
-model = tf.keras.models.Sequential()
-model.add(tf.keras.layers.Flatten())
-model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
-model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
-model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
+MODEL = tf.keras.models.Sequential()
+MODEL.add(tf.keras.layers.Flatten())
+MODEL.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+MODEL.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+MODEL.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
 
-model.compile(optimizer='adam', 
-              loss='sparse_categorical_crossentropy', 
+MODEL.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-model.fit(X_TRAIN, Y_TRAIN), epochs=3)
 
-val_loss, val_acc = model.evaluate(X_TEST, Y_TEST)
-print(val_loss, val_acc)
+MODEL.fit(X_TRAIN, Y_TRAIN, epochs=3)
 
-import matplotlib.pyplot as plt #not at top to show separation
+VAL_LOSS, VAL_ACC = MODEL.evaluate(X_TEST, Y_TEST)
+print(VAL_LOSS, VAL_ACC)
 
-plt.imshow(X_TRAIN[0], cmap = plt.cm.binary)
+plt.imshow(X_TRAIN[0], cmap=plt.cm.binary)
 plt.show()
 print(X_TRAIN[0])
