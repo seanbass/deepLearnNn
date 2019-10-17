@@ -24,6 +24,6 @@ MODEL.fit(X_TRAIN, Y_TRAIN, epochs=3)
 VAL_LOSS, VAL_ACC = MODEL.evaluate(X_TEST, Y_TEST)
 print(VAL_LOSS, VAL_ACC)
 
-plt.imshow(X_TRAIN[0], cmap=plt.cm.binary)
+plt.imshow(X_TRAIN[0], cmap=None)
 plt.show()
 print(X_TRAIN[0])
