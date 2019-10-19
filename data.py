@@ -3,7 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 import random
-#import pickle
+import pickle
+
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, ACtivation, Flatten, Conv2D, MaxPooling2D
 
 DATADIR = 'C:/Users/snwon/Documents/GitHub/DogCat'
 CATEGORIES = ['Dog', 'Cat']
@@ -56,3 +60,16 @@ for features, label in TRAINING_DATA:
     Y.append(label)
 
 X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
+
+PICKLE_OUT = open('X.pickle', 'wb')
+pickle.dump(X, PICKLE_OUT)
+PICKLE_OUT.close()
+
+PICKLE_OUT = open('Y.pickle', 'wb')
+pickle.dump(Y, PICKLE_OUT)
+PICKLE_OUT.close()
+
+PICKLE_IN = open('X.pickle', 'rb')
+X = pickle.load(PICKLE_IN)
+
+print(X)
