@@ -5,10 +5,6 @@ import cv2
 import random
 import pickle
 
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, ACtivation, Flatten, Conv2D, MaxPooling2D
-
 DATADIR = 'C:/Users/snwon/Documents/GitHub/DogCat'
 CATEGORIES = ['Dog', 'Cat']
 
@@ -71,5 +67,3 @@ PICKLE_OUT.close()
 
 PICKLE_IN = open('X.pickle', 'rb')
 X = pickle.load(PICKLE_IN)
-
-print(X)
